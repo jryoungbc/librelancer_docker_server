@@ -1,0 +1,23 @@
+version: "latest"
+services:
+  librelancer:
+    image: librelancer:latest
+    #items in the llserver.json config file
+    environment:
+      SERVERNAME: "Librelancer Docker"
+      #Note you will likely have to connect with direct IP
+      SERVERDESCRIPTION: "Fly Away!"
+      #place the game folder Freelancer here
+      FREELANCERPATH: "/librelancer/Freelancer"
+      LOGINURL: null
+      #the database file will be automatically created
+      DATABASEPATH: "/librelancer/database.sql"
+      PORT: 43443
+    devices:
+      - "/dev/dri/card0" 
+    volumes:
+    #the volume for the above two paths
+      - /path/to/your/docker/configs/librelancer:/librelancer
+    ports:
+      - 43443:43443/udp
+#    restart: unless-stopped
